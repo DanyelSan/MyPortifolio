@@ -1,0 +1,8 @@
+# Apague o arquivo antigo
+rm requirements.txt 
+
+# Gere um novo apenas com o essencial (ou edite manualmente)
+echo "flask" >> requirements.txt
+echo "python-dotenv" >> requirements.txt
+echo "gunicorn" >> requirements.txt
+echo "alembic" >> requirements.txt
