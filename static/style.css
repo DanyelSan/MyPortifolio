@@ -23,11 +23,21 @@ body {
     margin: 15px auto;
     display: block;
     width: 140px;
+    height: 140px;
+    object-fit: cover;
     margin-top: 55px;
     border: 2px solid #2c2f3f;
-    border-radius: 60%;
+    border-radius: 50%;
     padding: 3 01px;
 }
+
+.img-fluid {
+    border: none;
+    box-shadow: none;
+    box-shadow: none !important;
+    border: none !important;
+}
+
 
 #header .profile h1 {
     font-size: 24px;
@@ -96,7 +106,7 @@ body {
 }
 
 section#inicio {
-    background-image: url("../static/img/20220705_121750\ \(2\).jpg");
+    background-image: url("../static/img/test.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

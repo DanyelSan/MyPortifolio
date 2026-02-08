@@ -1,19 +1,20 @@
 #importação.
 from flask import Flask, render_template, redirect, request, flash
 from flask_mail import Mail, Message
-from config import email, password
+from config import email, password, secret_key
+from datetime import date
 
 
 #contrução.
 app = Flask(__name__)
-app.secret_key = 'danielsilva'
+app.secret_key = secret_key
 
 #controle de e-mail.
 mail_settings = {
-    "MAIL_SERVER": "smtp.gmail.com", 
-    "MAIL_PORT": 465,
-    "MAIL_USE_TLS": False,
-    "MAIL_USE_SSL": True,
+    "MAIL_SERVER": "smtp-mail.outlook.com", 
+    "MAIL_PORT": 587,
+    "MAIL_USE_TLS": True,
+    "MAIL_USE_SSL": False,
     "MAIL_USERNAME": email,
     "MAIL_PASSWORD": password
 }
@@ -32,11 +33,14 @@ class Contato:
 #construção html.
 @app.route("/")
 def index():
-    return render_template('index.html')
+    nascimento = date(2000, 1, 16)
+    hoje = date.today()
+    idade = hoje.year - nascimento.year - ((hoje.month, hoje.day) < (nascimento.month, nascimento.day))
+    return render_template('index.html', idade=idade)
 
 
 #guia host/port or email.
-@app.route('/send', methods=["GET", "POST'"])
+@app.route('/send', methods=["GET", "POST"])
 def send():
     if request.method == 'POST':
         formContato = Contato(
@@ -47,11 +51,11 @@ def send():
 
         msg = Message(
             subject= f'{formContato.nome} te enviou uma mensagem no Portifólio',
-            sender= app.config.get("MAIL_USERMANE"),
-            recipients= ['danyelsan.silva@gmail.com', app.config.get("MAIL_USERMANE")],
+            sender= app.config.get("MAIL_USERNAME"),
+            recipients= ['danyelsan.silva@outlook.com', app.config.get("MAIL_USERNAME")],
             body= f'''
 
-            {formContato.nome} com o e-mail {formContato.email}, te enivou a seguinte mensagem:
+            {formContato.nome} com o e-mail {formContato.email}, te enviou a seguinte mensagem:
 
             {formContato.mensagem}
             
