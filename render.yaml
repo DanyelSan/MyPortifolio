@@ -2,7 +2,7 @@
 rm requirements.txt 
 
 # Gere um novo apenas com o essencial (ou edite manualmente)
-echo "flask" >> requirements.txt
-echo "python-dotenv" >> requirements.txt
-echo "gunicorn" >> requirements.txt
-echo "alembic" >> requirements.txt
+echo "flask==3.0.3" >> requirements.txt
+echo "flask-mail==0.10.0" >> requirements.txt
+echo "python-dotenv==1.0.1" >> requirements.txt
+echo "gunicorn==22.0.0" >> requirements.txt
